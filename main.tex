@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+%%% My Packages %%%
+\usepackage{blindtext} % for some dummy text
+\usepackage[ % https://www.overleaf.com/learn/latex/Page_size_and_margins, https://mirrors.rit.edu/CTAN/macros/latex/contrib/geometry/geometry.pdf
+    a4paper,
+    total={6.27in, 8.67in},
+    headheight=70pt,
+    voffset=35pt
+    ]{geometry} % General Page Layout. A4 paper is 8.27 inches by 11.67 inches
+\usepackage{fontspec} % For Adjusting text size, Docs: https://www.overleaf.com/learn/latex/XeLaTeX and https://texdoc.org/serve/fontspec/0
+\usepackage{setspace} % For double space, Docs: https://www.overleaf.com/learn/latex/Questions/How_can_I_double_space_a_document
+\usepackage{fancyhdr} % For setting up headers, Docs: https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{subfiles}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{parskip}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+%%% Commands %%%
+\setmainfont{Times New Roman}[ % Ensures the main font is times new roman
+  SizeFeatures={Size=12},
+  ItalicFont={Times New Roman Italic}
+]
+
+
+\pagestyle{fancy} % Makes Header Code Apply
+    \fancyfoot{} % Clear Footer Field
+    \fancyhead{} % Clear Header Field
+
+\fancypagestyle{firstpage}{% Defines header content for first page.
+    \rhead{\setstretch{2}\parbox[][\headheight][t]{1.3cm}{Wenn \thepage}}
+    \lhead{\setstretch{2}\parbox[][\headheight][t]{4cm}{
+        Starr Wenn\\
+        Professor Macedo\\
+        SOCH-2H\\
+        21 May 2024
+        }
+    }
+}
+
+% \doublespacing % Using \doublespacing in the preamble changes the text to double-line spacing
+\setstretch{2}
+\begin{document}
+    %%% Header Content %%%
+    \renewcommand{\headrulewidth}{0pt} % Remove Horizontal Line for Header
+    \thispagestyle{firstpage} % Apply header content for first page
+    \fancyhead[R]{\parbox[][\headheight][t]{1.3cm}{\setstretch{2}Wenn \thepage}} % Header content for remaining pages 
+    
+    %%% My Writting
+    % Math symbol reference: https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf
+    \begin{center}
+        An Introduction to Mathematical Sociology \\ When Mathematical Systems Address Sociological Behavior 
+    \end{center}
+    
+    \hspace{20pt} When reading "Mathematical Sociology", questions are inspired by students as to what the purpose of the field is. Why is there a sub-field of sociology that is so distinct in its mathematical approach that it must be distinguished as a sub-field. It is difficult to see how sociology, a field about the interpersonal relations of people, is advanced by mathematics, a study known for its notorious formalism and exactness. That is not to say that sociology does not generically rely on math; after all, being able to quantify things is usefully regardless of discipline; but for those not in the field, it is hard to imagine how a deep understanding of mathematical behavior finds relevance in the study of human social behavior. Phillip Bonacich and Philip Lu in their book {\em \large In Introduction to Mathematical Sociology} provide a foundation for young mathematical sociologists by providing the tools of the trade while exploring the sociological significance in their applications. This article serves as a summery of the concepts in mathematical sociology and attempts to intuitively explain the way math can address social behavior.
+    
+    \hspace{20pt} In the first half of the book, Bonacich \& Lu take us through a brief review of the relevant mathematical foundations. Some of these subjects are not exclusive to the study of mathematical sociology and have common applications in various fields of pure and applied mathematics, including set theory, probability, and linear algebra. The math subjects which are especially akin to sociology are networks and relations. With all of these subjects reviewed, they comprise the tools needed in order to understand more complex mathematical models. The essence of mathematical sociology, like sociology in general, is social networks and understanding what complex behavior can be derived from the way the network is interconnected. In order to visualize a social network, methods for graphical representations are utilized.
+    
+    \hspace{20pt} Graphs are essentially as a bunch of dots with lines connecting between them. Since graphs are really simple representations of networks, they are well studied in mathematics. The study of graphs in mathematics is refereed to as {\em \large graph theory}. In graph theory, the dots that lines connect are called the {\em \large nodes}, and the thing that the lines represent is refereed to as the {\em \large relation}. When analyzing social networks, what we choose to represent for the nodes and the relation which we choose to study is entirely dependent on the research question we wish to address. For example, suppose we are eager to study a group of friends at a college. In such a case, the nodes could represent each friend while lines could represent an instance of friendship; in this case, the network is likely to be very interconnected. After all, we would expect a "group of friends" to possess many mutual connections among friends. But we also can explore other relations in this group. For example, in some longstanding friend groups, two friends might develop romantic feelings for one another; consequentially, some friend groups have members which are dating. If we look at the graph representing which people in this friend group are dating, we can interpret the significance of the connections. We expect monogamous couples to be represented by single connections between two nodes. A polyamorous couple might be represented by a set of interconnected nodes. Although, if we find a line drawn between a first and second node, and a second to the third but without the first and the third being connected, then the second person appears to be dating two people separately. Consequentially, We have mathematically identified relationship drama! Point being, we can understand graphs in their specific context to draw conclusions about the social network they describe. This perspective is enormously helpful in understanding small networks, but it's not exactly clear how to quantify such relationships. This is where the second fundamental tool of mathematical sociology resolves this issue.
+    
+    \hspace{20pt} {\em \large Adjacency matrices} are mathematical tables where entry represents a particular relationship between two nodes. In order to more thoroughly understand this type of mathematical object, we will engage with a technical example. Consider the graph shown on the following page. Here, nodes represent people and the relation of study is mutual friendship. Notice that the lines are not directional, this is refereed to as a {\em \large symmetric relation}, since the relation is understood to be two-way. Some relations can be one directional, or non-symmetric. The relation is also binary,  meaning that there are no "half friendships" in this world; a relationship is either all or nothing, 1 or 0. Now for this graph, I have constructed an adjacency matrix shown below it.  We will
+    
+     \begin{wrapfigure}[10]{L}{6cm} 
+        \centering
+        \subfile{Diagrams/exampleNetwork}
+        \subfile{Diagrams/exampleAdjacencyMatrix}
+    \end{wrapfigure}
+    
+ call this matrix \large $F$, since it represents a friendship relation. The use of a matrix might not seem like a desirable representation from the graph, but it still can be used to interpret the network. To see if a connection exists between a pair of people, we can first choose a person's row (for example, look at Bob's row) then we can choose a person's column (look at Henry's column). The place where the row and column intersect has a value of 1, which in this case implies that they are connected. If we make a brief glance at the network graph above, we see that this is indeed the case. Notice that if you choose the row and column for the same person, that the entry is 0 for every person represented. This can be seen as by the top-left to bottom-right diagonal of the matrix possessing entries of all value 0. This is because the concept of "friendship" is ultimately an idea which makes sense between different people, but fails to make sense when considering one's self. You can have friends, but can you be your own friend? You can love others, but is loving yourself the same thing? Since inter-personal concepts are not usually well defined or meaningful when considering self-relations, we often ignore them. In general, having a 0's along the diagonal is a normal sight. Now, lets ask ourselves a questions about the network (somewhat arbitrarily here): who has the most mutual connections? This can be important in networks when trying to understand how information diffuses person to person. Or even how diseases travels in a group of people. Well, we can determine a lot about the matrix \large $F$ by squaring it, as shown below:
+    \begin{align*} 
+    F^2=
+        \begin{bmatrix}
+            0 & 1 & 1 & 0 & 0\\[-13pt]
+            1 & 0 & 1 & 0 & 0\\[-13pt]
+            1 & 1 & 0 & 1 & 1\\[-13pt]
+            0 & 0 & 1 & 0 & 0\\[-13pt]
+            0 & 0 & 1 & 0 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 & 1 & 1 & 0 & 0\\[-13pt]
+            1 & 0 & 1 & 0 & 0\\[-13pt]
+            1 & 1 & 0 & 1 & 1\\[-13pt]
+            0 & 0 & 1 & 0 & 0\\[-13pt]
+            0 & 0 & 1 & 0 & 0
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            2 & 1 & 1 & 1 & 1\\[-13pt]
+            1 & 2 & 1 & 1 & 1\\[-13pt]
+            1 & 1 & 4 & 0 & 0\\[-13pt]
+            1 & 1 & 0 & 1 & 1\\[-13pt]
+            1 & 1 & 0 & 1 & 1
+        \end{bmatrix}
+    \end{align*}
+
+    We can see here that Henry has the most mutual connections out of the rest of these friends (4), while Josephine and and Samantha have the least mutual connections (1 each). Notice here that we are now looking at the diagonal for this information, when before we intended to ignore it. This is because the diagonal represents the number of mutual connections a person has with themselves, which in this case is just their mutual connections. We can see the number of mutual connections for any two people in the matrix. For those who understand the properties of linear algebra, augmented matrices can be mathematically utilized in order to derive complex relationships contained within the network. The use of matrices might appear redundant given the use of graphs, but adjacent matrices allow for the interpretation of complex behaviors even if the network gets too big to draw on a graph. For {\large $N$} nodes, we have {\large $N^2$} possible connections, so using data structures to organize connections can be extremely helpful. 
+    
+    \hspace{20pt} Both graphs and adjacent matrices form the foundations of mathematical sociology. As the textbook goes on, Bonacich \& Lu slowly introduces the reader to more and more complex situations. For example, it is somewhat trivial to understand networks as semi-static relations, but what if relations are subject to choice? Perhaps a subject in a network will have to choose what relations best suit them, forming some sort of competitive edge. The study of rewards from different strategies in competitive situations is called {\em \large Game Theory}, and such mathematical methods can also be applied to understanding more dynamic social networks. The field of sociology possesses certain limitations when it comes to understanding social behavior. The data collected from sociological investigations are often surface level, and data addressing the internal mechanics of a network is either minimal or biased. Mathematical sociology can be used to understand how local network relationships and behaviors can be abstracted into bigger extrinsic observations. Sociology also possesses the limitation of being non-repeatable, and the chaotic nature of social interactions makes sociological experiments non-practical. Simulations developed on the foundations of mathematical sociology can be tested, repeated, and investigated more thoroughly when strong connections are drawn to reality. Bonacich \& Lu's introductory textbook is an excellent resource for those eager to study the field, but would likely be best utilized as a complement to an academic courses. Mathematical sociology is a benefit to the sociological disciplines which serves to un-obscure the inner-workings of the social systems which sociology is keen to understand.
+ % \addtolength{\voffset}{-30pt} 
+\end{document}
